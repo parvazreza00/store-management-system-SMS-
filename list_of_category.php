@@ -26,14 +26,14 @@ include('database.php');
     echo "<table class='table'><tr><th>Category Id</th><th>Category Name</th>
                     <th>Category Entrydate</th><th>Action</th></tr>";
     while($data = mysqli_fetch_assoc($query)){
-        $categroy_id = $data['category_id'];
+        $category_id = $data['category_id'];
         $category_name = $data['category_name'];
         $category_entrydate = $data['category_entrydate'];
 
-        echo "<tr><td>$categroy_id</td>
+        echo "<tr><td>$category_id</td>
         <td>$category_name</td>
         <td>$category_entrydate</td>
-        <td><a href='edit_category.php?id=$categroy_id'> Edit </a></td></tr>";
+        <td><a href='edit_category.php?id=$category_id'> Edit </a></td></tr>";
     }
     echo "</table>";
 
