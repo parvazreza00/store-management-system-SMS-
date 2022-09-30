@@ -18,13 +18,15 @@ include('database.php');
 <?php
 if(isset($_GET['id'])){
     $getid = $_GET['id'];
-    $sql = "SELECT * FROM category WHERE category_id='$getid' ";
+    $sql = "SELECT * FROM product WHERE product_id='$getid' ";
     $query = mysqli_query($conn, $sql);
     $data = mysqli_fetch_assoc($query);
 
-    $category_id = $data['category_id'];
-    $category_name = $data['category_name'];
-    $category_entrydate = $data['category_entrydate'];
+    $product_id = $data['product_id'];
+    $product_name = $data['product_name'];
+    $product_category = $data['product_category'];
+    $product_code = $data['product_code'];
+    $product_entrydate = $data['product_entrydate'];
 
 }
 
@@ -55,7 +57,7 @@ if(isset($_GET['category_name'])){
     <input type="text" name="category_id" value="<?php echo $category_id; ?>" hidden>
     <input type="submit" name="" id="" value="Submit">
 
-</form>
+    </form>
 
 
 

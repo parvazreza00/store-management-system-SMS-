@@ -3,6 +3,21 @@ include('database.php');
 
 ?>
 
+<?php
+$sql1 ="SELECT * FROM category";
+$query1 = mysqli_query($conn, $sql1);
+
+$category_list = array();
+
+while($data = mysqli_fetch_assoc($query1)){
+    $category_id = $data['category_id'];
+    $category_name = $data['category_name'];
+ 
+    $category_list[$category_id] = $category_name;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,25 +30,25 @@ include('database.php');
 </head>
 <body>
     <div class="container mt-2">
-
-
     
 
 <?php
-    $sql = "SELECT * FROM `category`";
+    $sql = "SELECT * FROM `product`";
     $query = mysqli_query($conn, $sql);
 
-    echo "<table class='table'><tr><th>Category Id</th><th>Category Name</th>
-                    <th>Category Entrydate</th><th>Action</th></tr>";
+    echo "<table class='table'><tr><th>Product Id</th><th>Product Name</th>
+                    <th>Product category</th><th>Product code</th><th>Action</th></tr>";
     while($data = mysqli_fetch_assoc($query)){
-        $category_id = $data['category_id'];
-        $category_name = $data['category_name'];
-        $category_entrydate = $data['category_entrydate'];
+        $product_id = $data['product_id'];
+        $product_name = $data['product_name'];
+        $product_category = $data['product_category'];
+        $product_code = $data['product_code'];
 
-        echo "<tr><td>$category_id</td>
-        <td>$category_name</td>
-        <td>$category_entrydate</td>
-        <td><a href='edit_category.php?id=$category_id' class='btn btn-primary'> Edit </a></td>
+        echo "<tr><td>$product_id</td>
+        <td>$product_name</td>
+        <td>$category_list[$product_category]</td>
+        <td>$product_code</td>
+        <td><a href='edit_product.php?id=$product_id' class='btn btn-primary'> Edit </a></td>
         <td><a href='#' class='btn btn-danger'>Delete</a></td></tr>";
     }
     echo "</table>";
@@ -43,14 +58,6 @@ include('database.php');
 
 
 ?>
-    
-
-
-
-
-
-
-
 
 
     </div>
