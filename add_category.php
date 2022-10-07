@@ -1,8 +1,9 @@
 <?php
-
-?>
-<?php
 include('database.php');
+
+session_start();
+$user_first_name = $_SESSION['user_first_name'] ;
+$user_last_name = $_SESSION['user_last_name'] ;
 
 ?>
 
@@ -17,6 +18,9 @@ include('database.php');
 
 </head>
 <body>
+<?php
+    if(!empty($user_first_name) && !empty($user_last_name)){
+?>
 
 <?php
 if(isset($_GET['category_name'])){
@@ -46,7 +50,11 @@ if(isset($_GET['category_name'])){
 
 
 
-
+<?php
+}else{
+    header('location:login.php');
+}
+?>
 
 
 

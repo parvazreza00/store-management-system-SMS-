@@ -1,7 +1,10 @@
 <?php
 include('database.php');
-
 require('myfunction.php');
+
+session_start();
+$user_first_name = $_SESSION['user_first_name'] ;
+$user_last_name = $_SESSION['user_last_name'] ;
 
 ?>
 
@@ -17,6 +20,10 @@ require('myfunction.php');
 </head>
 <body>
     <div class="container">
+
+<?php
+    if(!empty($user_first_name) && !empty($user_last_name)){
+?>
 
 
     <?php
@@ -58,7 +65,11 @@ if(isset($_GET['store_product_name'])){
 </form>
 
 
-
+<?php
+}else{
+    header('location:login.php');
+}
+?>
     </div>
 
 

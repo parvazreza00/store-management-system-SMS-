@@ -1,5 +1,10 @@
 <?php
 include('database.php');
+
+session_start();
+$user_first_name = $_SESSION['user_first_name'] ;
+$user_last_name = $_SESSION['user_last_name'] ;
+
 ?>
 
 <!DOCTYPE html>
@@ -14,6 +19,9 @@ include('database.php');
 </head>
 <body>
     <div class="container">
+<?php
+    if(!empty($user_first_name) && !empty($user_last_name)){
+?>
 
 
     <?php
@@ -50,6 +58,11 @@ include('database.php');
 
 
 
+<?php
+}else{
+    header('location:login.php');
+}
+?>
     </div>
 
 
