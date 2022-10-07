@@ -1,6 +1,10 @@
 <?php
 include('database.php');
 
+session_start();
+$user_first_name = $_SESSION['user_first_name'] ;
+$user_last_name = $_SESSION['user_last_name'] ;
+
 ?>
 
 <?php
@@ -30,7 +34,10 @@ while($data = mysqli_fetch_assoc($query1)){
 </head>
 <body>
     <div class="container mt-2">
-    
+
+<?php
+    if(!empty($user_first_name) && !empty($user_last_name)){
+?>
 
 <?php
     $sql = "SELECT * FROM `product`";
@@ -55,7 +62,9 @@ while($data = mysqli_fetch_assoc($query1)){
 
    
 
-
+}else{
+    header('location:login.php');
+}
 
 ?>
 

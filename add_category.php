@@ -1,4 +1,7 @@
 <?php
+
+?>
+<?php
 include('database.php');
 
 ?>
