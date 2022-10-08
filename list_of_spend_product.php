@@ -7,7 +7,7 @@ $user_last_name = $_SESSION['user_last_name'] ;
 
 ?>
 
-?>
+
 
 <?php
 $sql1 ="SELECT * FROM product";

@@ -1,0 +1,1 @@
+<p class="text-center p-2">Copyright &copy; 2017-<?php echo date("Y"); ?></p>

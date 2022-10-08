@@ -22,47 +22,17 @@
 <body>
 
     <div class="container">
-        <div class="container-fluid border-bottom border-success"><!--start top bar -->
-            <div class="row p-3 ">
-                <div class="col-md-9">
-                    <h3><a href="index.php" class="text-success text-decoration-none">Store Management System | SMS</a></h3>
-                </div>
-                <div class="col-md-3">
-                    <p class="pt-2"><?php echo $user_first_name.' '.$user_last_name;  ?>
-                        <a href="logout.php" class="tex-white text-decoration-none btn btn-success py-1 m-0 ms-2">
-                            Logout
-                        </a>
-                    </p>
-                </div>
-            </div>           
+        <div class="container-fluid border-bottom border-success mb-0"><!--start top bar -->
+                    <?php include('topbar.php'); ?>
         </div><!--end top bar -->
 
-        <div class="container-fluid"><!--body -->
+        <div class="container-fluid mt-1"><!--body -->
             <div class="row"><!--start body row -->
-                <div class="col-md-3 p-0 m-0 "><!--start left body part -->
-                    <h5 class="bg-success text-white px-2 py-1">Category</h5>
-                    <ul class="list-group">
-                        <li class="list-group-item"><a href="add_category.php" class="text-dark text-decoration-none">Add category</a></li>
-                        <li class="list-group-item"><a href="list_of_category.php" class="text-dark text-decoration-none">Category List</a></li>
-                    </ul>
-                    <h5 class="bg-success text-white px-2 py-1">Product</h5>
-                    <ul class="list-group">
-                        <li class="list-group-item"><a href="add_product.php" class="text-dark text-decoration-none">Add Product</a></li>
-                        <li class="list-group-item"><a href="list_of_product.php" class="text-dark text-decoration-none">Product List</a></li>
-                    </ul>
-                    <h5 class="bg-success text-white px-2 py-1">Store Prodcut</h5>
-                    <ul class="list-group">
-                        <li class="list-group-item"><a href="add_store_product.php" class="text-dark text-decoration-none">Add store product</a></li>
-                        <li class="list-group-item"><a href="list_of_entry_product.php" class="text-dark text-decoration-none">Store product List</a></li>
-                    </ul>
-                    <h5 class="bg-success text-white px-2 py-1">Spent Product</h5>
-                    <ul class="list-group">
-                        <li class="list-group-item"><a href="add_spend_product.php" class="text-dark text-decoration-none">Add spent product</a></li>
-                        <li class="list-group-item"><a href="list_of_spend_product.php" class="text-dark text-decoration-none">Spend product List</a></li>
-                    </ul>
+                <div class="col-md-3 p-0 m-0 border-end-0"><!--start left body part -->
+                    <?php include('leftbar.php'); ?>
                 </div><!--end left body part -->                
-                <div class="col-md-9"><!--start right body part -->
-                    <div class="row p-4">
+                <div class="col-md-9 border-start-0"><!--start right body part -->
+                    <div class="row ms-4">
                         <div class="col-md-3">
                             <a href="add_category.php" class="text-success" style="font-size:50px;"><i class="fa-solid fa-folder-plus"></i></a>
                             <p>Add category</p>
@@ -81,7 +51,7 @@
                         </div>                        
                     </div>
                     <hr>
-                    <div class="row p-4">
+                    <div class="row ms-4">
                         <div class="col-md-3">
                             <a href="add_store_product.php" class="text-success" style="font-size:50px;"><i class="fa-solid fa-boxes-packing"></i></a>
                             <p>Store Product</p>
@@ -99,12 +69,45 @@
                             <p>Spend Product list</p> 
                         </div>                        
                     </div>
+                    <hr>
+                    <div class="row ms-4">
+                        <div class="col-md-3">
+                            <a href="report.php" class="text-success" style="font-size:50px;"><i class="fa-solid fa-chart-column"></i></a>
+                            <p>Report</p>
+                        </div>
+                        <div class="col-md-3">
+                            
+                        </div>
+                        <div class="col-md-3">
+                            
+                        </div>
+                        <div class="col-md-3">
+                            
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row ms-4">
+                        <div class="col-md-3">
+                            <a href="add_user.php" class="text-success" style="font-size:50px;"><i class="fa-solid fa-user-plus"></i></a>
+                            <p>Add User</p>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="list_of_user.php" class="text-success" style="font-size:50px;"><i class="fa-sharp fa-solid fa-users"></i></a>
+                            <p>User List</p>
+                        </div>
+                        <div class="col-md-3">
+                            
+                        </div>
+                        <div class="col-md-3">
+                            
+                        </div>
+                    </div>
                 </div><!--end right body part -->
             </div><!--end body row -->
         </div>
 
         <div class="container-fluid border-top border-success"><!--bottom bar -->
-           <p class="text-center p-2">Copyright &copy; 2017-<?php echo date("Y"); ?></p>
+          <?php include('bottombar.php'); ?>
         </div>
 
     
