@@ -35,9 +35,11 @@ $user_last_name = $_SESSION['user_last_name'] ;
                     <?php include('leftbar.php'); ?>
                 </div><!--end left body part -->  
                               
-                <div class="col-md-7"><!--start right body part -->
-                
-                <?php
+            <div class="col-md-9"><!--start right body part -->
+                <div class="row p-3">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-9">
+                    <?php
                     if(isset($_GET['category_name'])){
                     $category_name      = $_GET['category_name'];
                     $category_entrydate = $_GET['category_entrydate'];
@@ -54,15 +56,20 @@ $user_last_name = $_SESSION['user_last_name'] ;
 
                 ?>
 
-            <form action="add_category.php" method="GET">
-                Category : <br><br>
-                <input type="text" name="category_name" class="form-control"><br><br>
-                Category Entry Date : <br><br>
-                <input type="date" name="category_entrydate" class="form-control"><br><br>
-                <input type="submit" class="btn btn-success" name="" id="" value="Submit">
-            </form>
+                <form action="add_category.php" method="GET">
+                    Category : <br><br>
+                    <input type="text" name="category_name" class="form-control"><br><br>
+                    Category Entry Date : <br><br>
+                    <input type="date" name="category_entrydate" class="form-control"><br><br>
+                    <input type="submit" class="btn btn-success" name="" id="" value="Submit">
+                </form>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+                
+                
 
-                </div><!--end right body part -->
+            </div><!--end right body part -->
             </div><!--end body row -->
         </div>
 
@@ -72,7 +79,7 @@ $user_last_name = $_SESSION['user_last_name'] ;
 
     
     
-    </div><!--end container -->
+</div><!--end container -->
 
 
 

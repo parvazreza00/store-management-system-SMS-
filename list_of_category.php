@@ -38,8 +38,11 @@ $user_last_name = $_SESSION['user_last_name'] ;
                     <?php include('leftbar.php'); ?>
                 </div><!--end left body part -->  
                               
-                <div class="col-md-7"><!--start right body part -->
-                
+                <div class="col-md-9"><!--start right body part -->
+                <div class="row p-2">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-9">
+                        
                 <?php
     $sql = "SELECT * FROM `category`";
     $query = mysqli_query($conn, $sql);
@@ -66,6 +69,10 @@ $user_last_name = $_SESSION['user_last_name'] ;
     header('location:login.php');
 }
 ?>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+                
 
                 </div><!--end right body part -->
             </div><!--end body row -->
