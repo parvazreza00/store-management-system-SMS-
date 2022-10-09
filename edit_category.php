@@ -75,11 +75,11 @@ if(isset($_GET['category_name'])){
 
     <form action="edit_category.php" method="GET">
     Category : <br>
-    <input type="text" name="category_name" value="<?php echo $category_name; ?>"><br><br>
+    <input type="text" class="form-control" name="category_name" value="<?php echo $category_name; ?>"><br><br>
     Category Entry Date : <br>
-    <input type="date" name="category_entrydate" value="<?php echo $category_entrydate; ?>"><br><br>
-    <input type="text" name="category_id" value="<?php echo $category_id; ?>" hidden>
-    <input type="submit" name="" id="" value="Submit">
+    <input type="date" class="form-control" name="category_entrydate" value="<?php echo $category_entrydate; ?>"><br><br>
+    <input type="text" class="form-control" name="category_id" value="<?php echo $category_id; ?>" hidden>
+    <input type="submit" name="" id="" value="Submit" class="btn btn-success">
 
     </form>
                     </div>

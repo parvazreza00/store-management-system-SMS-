@@ -1,5 +1,9 @@
 <?php
 include('database.php');
+session_start();
+$user_first_name = $_SESSION['user_first_name'] ;
+$user_last_name = $_SESSION['user_last_name'] ;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,10 +16,28 @@ include('database.php');
 
 </head>
 <body>
-    <div class="container">
+    
+<?php
+    if(!empty($user_first_name) && !empty($user_last_name)){
+?>
 
+<div class="container"><!--container start -->
+        <div class="container-fluid border-bottom border-success mb-0"><!--start top bar -->
+                    <?php include('topbar.php'); ?>
+        </div><!--end top bar -->
 
-    <?php
+        <div class="container-fluid mt-1"><!--body -->
+            <div class="row"><!--start body row -->
+                <div class="col-md-3 p-0 m-0 border-end-0"><!--start left body part -->
+                    <?php include('leftbar.php'); ?>
+                </div><!--end left body part -->  
+                              
+                <div class="col-md-9"><!--start right body part -->
+                <div class="row p-2">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-9">
+                        
+                    <?php
     if(isset($_GET['id'])){
         $getid = $_GET['id'];
         $sql = "SELECT * FROM user WHERE user_id='$getid'";
@@ -55,17 +77,39 @@ include('database.php');
 
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="GET">
     User's First Name : <br>
-    <input type="text" name="user_first_name" value="<?php echo $user_first_name; ?>"><br><br>
+    <input type="text" name="user_first_name" class="form-control" value="<?php echo $user_first_name; ?>"><br>
     User's Last Name : <br>
-    <input type="text" name="user_last_name" value="<?php echo $user_last_name; ?>"><br><br>
+    <input type="text" name="user_last_name" class="form-control value="<?php echo $user_last_name; ?>"><br>
     Use's Email : <br>
-    <input type="text" name="user_email" value="<?php echo $user_email; ?>"><br><br>
+    <input type="text" name="user_email" class="form-control" value="<?php echo $user_email; ?>"><br
     User's Password : <br>
-    <input type="password" name="user_password" value="<?php echo $user_password; ?>"><br><br>
-    <input type="text" name="user_id" id="" value="<?php echo $user_id; ?>" hidden>
-    <input type="submit" name="" id="" value="Submit">
+    <input type="password" name="user_password" class="form-control" value="<?php echo $user_password; ?>"><br>
+    <input type="text" class="form-control" name="user_id" id="" value="<?php echo $user_id; ?>" hidden>
+    <input type="submit" name="" id="" value="Submit" class="btn btn-primary">
 
 </form>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+                
+
+                </div><!--end right body part -->
+            </div><!--end body row -->
+        </div>
+
+        <div class="container-fluid border-top border-success"><!--bottom bar -->
+          <?php include('bottombar.php'); ?>
+        </div>
+
+<?php 
+    }else{
+header('location:login.php');
+}
+?>
+    
+</div><!--end container -->
+
+    
 
 
 
