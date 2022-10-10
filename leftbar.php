@@ -23,3 +23,8 @@
                         <li class="list-group-item"><a href="add_user.php" class="text-dark text-decoration-none">Add User</a></li>
                         <li class="list-group-item"><a href="list_of_user.php" class="text-dark text-decoration-none">User List</a></li>
                     </ul>
+                    <h5 class="bg-success text-white px-2 py-1">Reports</h5>
+                    <ul class="list-group">
+                        <li class="list-group-item"><a href="report.php" class="text-dark text-decoration-none">Report</a></li>
+                        
+                    </ul>
