@@ -6,6 +6,16 @@ $user_first_name = $_SESSION['user_first_name'] ;
 $user_last_name = $_SESSION['user_last_name'] ;
 
 ?>
+<?php
+if(isset($_GET['id'])){
+    $deleteCategory = $_GET['id'];
+    $sql = "DELETE FROM `category` WHERE category_id='$deleteCategory'";
+    mysqli_query($conn, $sql);
+        
+
+}
+
+?>
 
 
 <!DOCTYPE html>
@@ -19,6 +29,7 @@ $user_last_name = $_SESSION['user_last_name'] ;
     <link rel="stylesheet" href="css/fontawesome.min.css">
     <link rel="stylesheet" href="css/custom.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
 </head>
 <body>
 
@@ -58,7 +69,7 @@ $user_last_name = $_SESSION['user_last_name'] ;
         <td>$category_name</td>
         <td>$category_entrydate</td>
         <td><a href='edit_category.php?id=$category_id' class='btn btn-primary'> Edit </a></td>
-        <td><a href='#' class='btn btn-danger'>Delete</a></td></tr>";
+        <td><a href='list_of_category.php?id=$category_id' class='btn btn-danger'>Delete</a></td></tr>";
     }
     echo "</table>";
 
