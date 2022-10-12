@@ -11,8 +11,8 @@ if(isset($_GET['id'])){
     $deleteCategory = $_GET['id'];
     $sql = "DELETE FROM `category` WHERE category_id='$deleteCategory'";
     mysqli_query($conn, $sql);
-        
 
+    header('location:list_of_category.php?m=??');
 }
 
 ?>
@@ -25,6 +25,14 @@ if(isset($_GET['id'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Category List</title>
+    <!-- sweet alert cdn -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- jquery cdn -->
+    <script
+    src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+    crossorigin="anonymous"></script>
+    <!-- fontawesome -->
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/fontawesome.min.css">
     <link rel="stylesheet" href="css/custom.css">
@@ -69,17 +77,19 @@ if(isset($_GET['id'])){
         <td>$category_name</td>
         <td>$category_entrydate</td>
         <td><a href='edit_category.php?id=$category_id' class='btn btn-primary'> Edit </a></td>
-        <td><a href='list_of_category.php?id=$category_id' class='btn btn-danger'>Delete</a></td></tr>";
+        <td><a href='list_of_category.php?id=$category_id' class='btn btn-danger btn-del' >Delete</a></td></tr>";
+       
     }
     echo "</table>";
-
-   
-
 
 }else{
     header('location:login.php');
 }
 ?>
+
+<?php if(isset($_GET['m'])): ?>
+    <div class="flash-data" data-flashdata = "<?php echo $_GET['m']; ?>"></div>
+<?php endif; ?>    
                     </div>
                     <div class="col-md-2"></div>
                 </div>
@@ -94,7 +104,7 @@ if(isset($_GET['id'])){
         </div>
 
     
-    
+        
     </div><!--end container -->
     
 
@@ -104,3 +114,32 @@ if(isset($_GET['id'])){
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
+<script type="text/javascript">
+    $('.btn-del').on('click', function(e){
+        e.preventDefault();
+        const href=$(this).attr('href')
+        Swal.fire({
+            title: 'Are You Sure?',
+            text: "Record will be deleted?",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButton: '#3085d6',
+            concelButtonColor:'#d33',
+            confirmButtonText: 'Delete Record?',
+        }).then((result) => {
+            if(result.value){
+                document.location.href = href;
+            }
+        })
+    });
+    
+    const flashdata = $('.flash-data').data('flashdata')
+    if(flashdata){
+        swal.fire({
+            type: 'success',
+            title: 'Success',
+            text: 'Record has been deleted',
+        })
+    }
+
+</script>

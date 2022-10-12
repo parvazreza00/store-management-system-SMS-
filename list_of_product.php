@@ -21,6 +21,16 @@ while($data = mysqli_fetch_assoc($query1)){
 }
 
 ?>
+<!-- deleteion data  -->
+<?php
+    if(isset($_GET['deleteid'])){
+        $deleteid = $_GET['deleteid'];
+        $sql = "DELETE FROM `product` WHERE product_id ='$deleteid'";
+        if(mysqli_query($conn, $sql)){
+            header('location:list_of_product.php?m=??');
+        }
+    }
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,6 +39,13 @@ while($data = mysqli_fetch_assoc($query1)){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product List</title>
+    <!-- sweet alert cdn -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- jquery cdn -->
+    <script
+    src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+    crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/fontawesome.min.css">
     <link rel="stylesheet" href="css/custom.css">
@@ -58,7 +75,7 @@ while($data = mysqli_fetch_assoc($query1)){
                     <div class="col-md-9">
                         
                     <?php
-    $sql = "SELECT * FROM `product`";
+    $sql = "SELECT * FROM `product` ";
     $query = mysqli_query($conn, $sql);
 
     echo "<table class='table'><tr><th>Product Id</th><th>Product Name</th>
@@ -67,14 +84,15 @@ while($data = mysqli_fetch_assoc($query1)){
         $product_id = $data['product_id'];
         $product_name = $data['product_name'];
         $product_category = $data['product_category'];
-        $product_code = $data['product_code'];
+        $product_code = $data['product_code']; 
+        $category_list;       
 
         echo "<tr><td>$product_id</td>
         <td>$product_name</td>
         <td>$category_list[$product_category]</td>
         <td>$product_code</td>
         <td><a href='edit_product.php?id=$product_id' class='btn btn-primary'> Edit </a></td>
-        <td><a href='#' class='btn btn-danger'>Delete</a></td></tr>";
+        <td><a href='list_of_product.php?deleteid=$product_id' class='btn btn-danger btn-del'>Delete</a></td></tr>";
     }
     echo "</table>";
 
@@ -85,6 +103,10 @@ while($data = mysqli_fetch_assoc($query1)){
 }
 
 ?>
+
+<?php if(isset($_GET['m'])) : ?>
+    <div class="flash-data" data-flashdata="<?php echo $_GET['m']; ?>"></div>
+<?php endif ; ?>
                     </div>
                     <div class="col-md-2"></div>
                 </div>
@@ -109,3 +131,34 @@ while($data = mysqli_fetch_assoc($query1)){
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
+
+<script type="text/javascript">
+    $('.btn-del').on('click', function(e){
+        e.preventDefault();
+
+        const href = $(this).attr('href');
+        swal.fire({
+            title: "Are You Sure?",
+            type: "warning",
+            text: "Record will be deleted!",
+            showCancelButton: true,
+            confirmButton: '#3085d6',
+            concelButtonColor:'#d33',
+            confirmButtonText: 'Delete Record?',
+        }).then((result) => {
+            if(result.value){
+                document.location.href = href;
+            }
+        })
+    });
+    
+    const flashdata = $('.flash-data').data('flashdata')
+    if(flashdata){
+        swal.fire({
+            title:"Success",
+            type:"success",
+            text:"Record has been deleted!",
+        })
+    }
+
+</script>
