@@ -63,7 +63,12 @@ if(isset($_GET['id'])){
                     <div class="col-md-9">
                         
                 <?php
-    $sql = "SELECT * FROM `category`";
+                if(isset($_GET['pageno'])){
+                    $getpageno = $_GET['pageno'];
+                    $offset = ($getpageno -1 ) * 5;
+                }
+                
+    $sql = "SELECT * FROM `category` LIMIT 5 OFFSET $offset";
     $query = mysqli_query($conn, $sql);
 
     echo "<table class='table'><tr><th>Category Id</th><th>Category Name</th>
@@ -86,6 +91,10 @@ if(isset($_GET['id'])){
     header('location:login.php');
 }
 ?>
+
+    <a href='list_of_category.php?pageno=1'> < </a>
+    <a href='list_of_category.php?pageno=2'> > </a>
+
 
 <?php if(isset($_GET['m'])): ?>
     <div class="flash-data" data-flashdata = "<?php echo $_GET['m']; ?>"></div>
