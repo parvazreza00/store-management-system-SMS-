@@ -54,7 +54,7 @@ if(isset($_POST['submit'])){
             while($dataimage = mysqli_fetch_assoc($queryimage)){
             $imagename = $dataimage['imagename'];
             
-            echo "<img src='images/$imagename' alt=''>";
+            echo "<img src='images/$imagename' alt='' style='width:100px;height:100px'>";
             }
        ?>
     </div>
