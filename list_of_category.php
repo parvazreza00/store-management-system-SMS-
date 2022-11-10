@@ -109,7 +109,7 @@ if($getpageno_decrement == 0){
     echo "<span class='bg-success border round p-3 mt-1'> < </span>";
 }else{
 
-    echo " <span class='bg-success border round p-3 mt-1'>
+    echo " <span class='bg-success border round p-3'>
     <a href='list_of_category.php?pageno= $getpageno_decrement' class='text-white'> < </a>
     </span>";
 }
