@@ -63,10 +63,22 @@ if(isset($_GET['id'])){
                     <div class="col-md-9">
                         
                 <?php
-                if(isset($_GET['pageno'])){
-                    $getpageno = $_GET['pageno'];
-                    $offset = ($getpageno -1 ) * 5;
-                }
+                $sql1 = "SELECT * FROM category";
+                $query1 = mysqli_query($conn, $sql1);
+                $num_rows = mysqli_num_rows($query1);
+                $divide_num_rows = ($num_rows/5) + 1;
+
+        if(isset($_GET['pageno'])){
+             $getpageno = $_GET['pageno'];
+             $offset  = ($getpageno - 1)* 5;
+             $getpageno_increment = $getpageno + 1;
+             $getpageno_decrement = $getpageno - 1;
+            
+        }else{
+            $offset = 0;
+            $getpageno_increment = 2;
+            $getpageno_decrement = 0;
+        }
                 
     $sql = "SELECT * FROM `category` LIMIT 5 OFFSET $offset";
     $query = mysqli_query($conn, $sql);
@@ -92,8 +104,29 @@ if(isset($_GET['id'])){
 }
 ?>
 
-    <a href='list_of_category.php?pageno=1'> < </a>
-    <a href='list_of_category.php?pageno=2'> > </a>
+<?php 
+if($getpageno_decrement == 0){
+    echo "<span class='bg-success border round p-3 mt-1'> < </span>";
+}else{
+
+    echo " <span class='bg-success border round p-3 mt-1'>
+    <a href='list_of_category.php?pageno= $getpageno_decrement' class='text-white'> < </a>
+    </span>";
+}
+?>
+
+<?php 
+if($getpageno_increment> $divide_num_rows){
+    echo "<span class='bg-success border round p-3 mt-1'> > </span>";
+}else{
+    echo "<span class='bg-success border round p-3 mt-1'>
+    <a href='list_of_category.php?pageno= $getpageno_increment' class='text-white'> > </a>
+    </span>";
+}
+?>
+
+   
+    
 
 
 <?php if(isset($_GET['m'])): ?>
