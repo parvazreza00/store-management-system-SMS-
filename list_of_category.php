@@ -63,10 +63,10 @@ if(isset($_GET['id'])){
                     <div class="col-md-9">
                         
                 <?php
-                $sql1 = "SELECT * FROM category";
-                $query1 = mysqli_query($conn, $sql1);
-                $num_rows = mysqli_num_rows($query1);
-                $divide_num_rows = ($num_rows/5) + 1;
+        $sql1 = "SELECT * FROM category";
+        $query1 = mysqli_query($conn, $sql1);
+        $num_rows = mysqli_num_rows($query1);
+        $divide_num_rows = ($num_rows/5) + 1;
 
         if(isset($_GET['pageno'])){
              $getpageno = $_GET['pageno'];
@@ -103,6 +103,7 @@ if(isset($_GET['id'])){
     header('location:login.php');
 }
 ?>
+
 
 <?php 
 if($getpageno_decrement == 0){

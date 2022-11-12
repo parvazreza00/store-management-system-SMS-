@@ -75,8 +75,25 @@ if(isset($_GET['deleteid'])){
                 <div class="row p-2">
                     <div class="col-md-1"></div>
                     <div class="col-md-9">
+
                     <?php
-    $sql = "SELECT * FROM `store_product`";
+        $sql1 = "SELECT * FROM `store_product`";
+        $query1 = mysqli_query($conn, $sql1);
+        $num_rows = mysqli_num_rows($query1);
+        $divide_num_rows = ($num_rows/5) + 1;
+
+        if(isset($_GET['pageno'])){
+            $getpageno = $_GET['pageno'];
+            $offset = ($getpageno -1)*5;
+            $getpageno_increment = $getpageno + 1;
+            $getpageno_decrement = $getpageno - 1;
+        }else{
+            $offset = 0;
+            $getpageno_increment = 2;
+            $getpageno_decrement = 0;
+        }
+
+    $sql = "SELECT * FROM `store_product` LIMIT 5 OFFSET $offset";
     $query = mysqli_query($conn, $sql);
 
     echo "<table class='table'><tr><th>Id</th><th>Product Name</th>
@@ -95,14 +112,32 @@ if(isset($_GET['deleteid'])){
         <td><a href='list_of_entry_product.php?deleteid=$store_product_id' class='btn btn-danger btn-del'>Delete</a></td></tr>";
     }
     echo "</table>";
-
-   
-
-
 }else{
     header('location:login.php');
 }
 ?>
+
+<?php 
+if($getpageno_decrement == 0){
+    echo "<span class='bg-success border round p-3 mt-1'> < </span>";
+}else{
+    echo " <span class='bg-success border round p-3'>
+    <a href='list_of_entry_product.php?pageno= $getpageno_decrement' class='text-white'> < </a>
+    </span>";
+}
+?>
+
+<?php 
+if($getpageno_increment > $divide_num_rows){
+    echo "<span class='bg-success border round p-3 mt-1'> > </span>";
+}else{
+    echo "<span class='bg-success border round p-3 mt-1'>
+    <a href='list_of_entry_product.php?pageno= $getpageno_increment' class='text-white'> > </a>
+    </span>";
+}
+?>
+
+
 <?php if(isset($_GET['m'])) : ?>
     <div class="flash-data" data-flashdata="<?php echo $_GET['m']; ?>"></div>
 <?php endif; ?>
